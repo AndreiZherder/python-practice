@@ -14,14 +14,15 @@
 # Harry Potter
 
 
-def capitalize(s):
-    words = s.split()
-    for i in range(len(words)):
-        if 'a' <= words[i][0] <= 'z':
-            words[i] = chr(ord(words[i][0]) + ord('A') - ord('a')) + words[i][1:]
-    return ' '.join(words)
+def capitalize(word):
+    if 'a' <= word[0] <= 'z':
+        word = chr(ord(word[0]) + ord('A') - ord('a')) + word[1:]
+    return word
 
-s = input()
-s = capitalize(s)
-print(s)
 
+string = input()
+words = string.split()
+ans = []
+for word in words:
+    ans.append(capitalize(word))
+print(*ans)
