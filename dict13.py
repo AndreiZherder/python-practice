@@ -59,4 +59,3 @@ for _ in range(games):
         tournament[team2] = team2_result.copy()
 for team, result in tournament.items():
     print(f'{team}:{" ".join(str(i) for i in list(result.values()))}')
-tournament.update()
