@@ -16,7 +16,7 @@ while next_file_exists:
     print(text)
     if text.split()[0] == 'We':
         next_file_exists = False
-        with open('./data/out.txt', 'w', encoding='utf-8') as ouf:
+        with open('data/out.txt', 'w', encoding='utf-8') as ouf:
             ouf.write(text)
     else:
         url = DEFAULT_ADDRESS + text

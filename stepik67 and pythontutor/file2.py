@@ -14,8 +14,8 @@
 # Sample Output:
 # abc 3
 
-inf = open('./data/Bible.txt', 'r')
-ouf = open('./data/out.txt', 'w')
+inf = open('data/Bible.txt', 'r')
+ouf = open('data/out.txt', 'w')
 word_met = dict()
 for in_string in inf:
     for i in range(len(in_string) - 1, -1, -1):
