@@ -1,3 +1,4 @@
+# Итератор выделен в отдельный класс, имеющий функцию __next__
 class EvenIterator:
 
     def __init__(self, num):
@@ -12,6 +13,7 @@ class EvenIterator:
             raise StopIteration
 
 
+# Итерируемый объект имеет функцию __iter__
 class EvenSequence:
 
     def __init__(self, num):
@@ -22,13 +24,12 @@ class EvenSequence:
 
 
 for x in EvenSequence(10):
-    print(x)
+    print(x, end=' ')
+print('')
 
-lst = [1, 2, 3, 4, 5, 6]
-it = iter(lst)
+it = iter(EvenSequence(12))
 while True:
     try:
         print(next(it), end=' ')
     except StopIteration:
         break
-
