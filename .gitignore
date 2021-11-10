@@ -132,7 +132,7 @@ dmypy.json
 *.txt
 
 # data
-stepik67 and pythontutor/data
+data
 
 # IDE
 .idea
