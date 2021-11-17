@@ -23,13 +23,18 @@ class EvenSequence:
         return EvenIterator(self.num)
 
 
-for x in EvenSequence(10):
-    print(x, end=' ')
-print('')
-
 it = iter(EvenSequence(12))
 while True:
     try:
         print(next(it), end=' ')
     except StopIteration:
         break
+
+print('')
+y = EvenSequence(10)
+for x in y:
+    print(x, end=' ')
+
+print('')
+for x in y:
+    print(x, end=' ')

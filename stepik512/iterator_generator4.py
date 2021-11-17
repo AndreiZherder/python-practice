@@ -7,13 +7,19 @@ def even_generator(num: int):
         yield i
 
 
-for x in even_generator(10):
-    print(x, end=' ')
-print('')
-
 it = iter(even_generator(12))
 while True:
     try:
         print(next(it), end=' ')
     except StopIteration:
         break
+
+print('')
+y = even_generator(10)
+for x in y:
+    print(x, end=' ')
+
+print('')
+for x in y:  # second time y is empty
+    print(x, end=' ')
+
