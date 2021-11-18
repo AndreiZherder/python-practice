@@ -11,7 +11,7 @@
 # В поле ответа введите одно число или отправьте файл, содержащий одно число.
 
 import requests
-with open('data/dataset_3378_2.txt') as inf:
+with open('../data/dataset_3378_2.txt') as inf:
     url = inf.readline().strip()
 ans = requests.get(url)
 print(ans.text)

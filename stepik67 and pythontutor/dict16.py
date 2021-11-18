@@ -41,13 +41,13 @@ def mean(l: list):
 
 
 grades = [[] for i in range(11)]
-with open('data/dataset_3380_5.txt', 'r', encoding='utf-8') as inf:
+with open('../data/dataset_3380_5.txt', 'r', encoding='utf-8') as inf:
     for line in inf:
         words = line.split('\t')
         grade = int(words[0])
         height = int(words[2])
         grades[grade - 1].append(height)
-with open('data/out.txt', 'w', encoding='utf-8') as ouf:
+with open('../data/out.txt', 'w', encoding='utf-8') as ouf:
     for i, grade in enumerate(grades):
         if len(grade) == 0:
             ouf.write(f'{i + 1} -\n')

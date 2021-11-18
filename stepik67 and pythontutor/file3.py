@@ -28,14 +28,14 @@
 # 81.0 84.0 85.666666667
 
 grades = []
-with open('data/dataset_3363_4.txt', 'r', encoding='utf-8') as inf:
+with open('../data/dataset_3363_4.txt', 'r', encoding='utf-8') as inf:
     for line in inf:
         applicant = line.split(';')
         grades.append(applicant)
 sum_of_math_grades = 0
 sum_of_physics_grades = 0
 sum_of_russian_grades = 0
-with open('data/out.txt', 'w', encoding='utf-8') as ouf:
+with open('../data/out.txt', 'w', encoding='utf-8') as ouf:
     for applicant in grades:
         sum_of_applicant_grades = 0
         for grade in applicant[1:]:

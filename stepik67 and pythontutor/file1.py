@@ -9,8 +9,8 @@
 # Sample Output:
 # aaabbbbcceeeeeeeeeeb
 
-inf = open('./data/dataset_3363_2.txt', 'r')
-ouf = open('data/out.txt', 'w')
+inf = open('../data/dataset_3363_2.txt', 'r')
+ouf = open('../data/out.txt', 'w')
 for in_string in inf:
     in_string = in_string.strip()
     out_string = ''
