@@ -12,3 +12,6 @@ d = collections.defaultdict(list)
 for i in range(10):
     d[i].extend([i, i * i, i * i * i])
 print(d)
+
+q = collections.deque(lst, 3)
+print(q)
