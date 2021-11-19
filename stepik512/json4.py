@@ -17,7 +17,7 @@ API проекта Artsy предоставляет информацию о не
 и получить уникальный ключ (или токен), и в дальнейшем все запросы к API осуществляются при помощи этого ключа.
 
 Чтобы начать работу с API проекта Artsy,
-вам необходимо пройти на стартовую страницу документации к API https://developers.artsy.net/start
+вам необходимо пройти на стартовую страницу документации к API https://developers.artsy.net/v2/start
 и выполнить необходимые шаги, а именно зарегистрироваться, создать приложение,
 и получить пару идентификаторов Client Id и Client Secret. Не публикуйте эти идентификаторы.
 
@@ -81,13 +81,13 @@ import requests
 
 
 def main():
-    secret = json.load(open('../data/artsy-secret.json', encoding='utf8'))
+    secret = json.load(open('../data/artsy-secret.json', encoding='utf-8'))
     resp = requests.post('https://api.artsy.net/api/tokens/xapp_token', data=secret)
     print(resp.url, resp.status_code, resp.text)
     token = resp.json()['token']
 
     artists = []
-    with open('../data/dataset_24476_4.txt', 'r', encoding='utf8') as input_file:
+    with open('../data/dataset_24476_4.txt', 'r', encoding='utf-8') as input_file:
         for artist_id in input_file:
             artist_id = artist_id.strip()
             url = f'https://api.artsy.net/api/artists/{artist_id}'
@@ -98,7 +98,7 @@ def main():
             artists.append(artist)
     artists.sort(key=lambda artist: (artist['birthday'], artist['sortable_name']))
 
-    with open('../data/out.txt', 'w', encoding='utf8') as output_file:
+    with open('../data/out.txt', 'w', encoding='utf-8') as output_file:
         for artist in artists:
             output_file.write(f"{artist['sortable_name']}\n")
 

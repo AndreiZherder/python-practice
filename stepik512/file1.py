@@ -14,8 +14,8 @@ dde
 c
 ab
 """
-with open('../data/in.txt', 'r', encoding='utf8') as inf,\
-        open('../data/out.txt', 'w', encoding='utf8') as ouf:
+with open('../data/in.txt', 'r', encoding='utf-8') as inf,\
+        open('../data/out.txt', 'w', encoding='utf-8') as ouf:
     lines = inf.readlines()
     while lines:
         ouf.write(lines.pop())

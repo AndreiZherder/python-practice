@@ -29,7 +29,7 @@ encrypted = requests.get('https://stepik.org/media/attachments/lesson/24466/encr
 passwords = requests.get('https://stepik.org/media/attachments/lesson/24466/passwords.txt')
 for password in passwords.text.splitlines():
     try:
-        text = simplecrypt.decrypt(password, encrypted.content).decode('utf8')
+        text = simplecrypt.decrypt(password, encrypted.content).decode('utf-8')
         print(text)
     except simplecrypt.DecryptionException:
         print(f'Password {password} raised DecryptionException')
