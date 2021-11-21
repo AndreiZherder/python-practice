@@ -77,6 +77,7 @@ Abbas Hamra
 Время одной попытки: 5 mins
 """
 import json
+import yaml
 import requests
 
 
@@ -102,6 +103,8 @@ def main():
         for artist in artists:
             output_file.write(f"{artist['sortable_name']}\n")
 
+    json.dump(artists, open('../data/artists.json', 'w', encoding='utf-8'), indent=2, ensure_ascii=False)
+    yaml.dump(artists, open('../data/artists.yaml', 'w', encoding='utf-8'))
 
 if __name__ == '__main__':
     main()
