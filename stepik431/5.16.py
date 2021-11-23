@@ -15,5 +15,6 @@ def main():
     ans = ((a and b) or ((not a) and (not b)))
     print(ans)
 
+
 if __name__ == '__main__':
     main()
