@@ -1,8 +1,10 @@
+import functools
 from typing import List
 
 
 def trace(s1, s2):
     def deco(f):
+        @functools.wraps(f)
         def wrapper(*args, **kwargs):
             print(s1)
             res = f(*args, **kwargs)
@@ -24,6 +26,7 @@ def main():
     a = [1, 2, 3, 4, 5]
     deco = trace(s1='before', s2='after')
     min = deco(min)
+    print(min.__name__)
     print(min(a))
 
 
