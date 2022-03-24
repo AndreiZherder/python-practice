@@ -3,7 +3,7 @@ import time
 
 
 def sleep(delay):
-    yield time.time() + delay
+    yield delay
 
 
 def rhythm():
@@ -33,7 +33,7 @@ def main():
         if wait > 0:
             time.sleep(wait)
         try:
-            start_time = next(task)
+            start_time = next(task) + time.time()
         except StopIteration:
             pass
         else:
