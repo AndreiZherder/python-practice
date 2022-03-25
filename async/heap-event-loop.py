@@ -21,23 +21,19 @@ def bang():
 
 
 def main():
-    task1 = bang()
-    task2 = rhythm()
     tasks = []
-    priority = {task1: 1, task2: 2}
-    heapq.heappush(tasks, (time.time(), priority[task1], task1))
-    heapq.heappush(tasks, (time.time(), priority[task2], task2))
+    heapq.heappush(tasks, (time.time(), 1, bang()))
+    heapq.heappush(tasks, (time.time(), 2, rhythm()))
     while tasks:
-        start_time, _, task = heapq.heappop(tasks)
+        start_time, priority, task = heapq.heappop(tasks)
         wait = start_time - time.time()
         if wait > 0:
             time.sleep(wait)
         try:
             start_time = next(task) + time.time()
         except StopIteration:
-            pass
-        else:
-            heapq.heappush(tasks, (start_time, priority[task], task))
+            continue
+        heapq.heappush(tasks, (start_time, priority, task))
 
 
 if __name__ == '__main__':
