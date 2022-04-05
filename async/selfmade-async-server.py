@@ -30,7 +30,6 @@ class Loop:
                 heapq.heappush(self.tasks, (time.time() + delay, task_id, task))
             if self.selector.get_map():
                 for key, events in self.selector.select(timeout=0):
-                    print(key, events)
                     self.selector.unregister(key.fileobj)
                     task_id = key.data[0]
                     task = key.data[1]
@@ -38,15 +37,6 @@ class Loop:
 
 
 loop = Loop()
-
-
-def run_server(port: int):
-    server = socket.socket()
-    server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-    server.setblocking(False)
-    server.bind(('', port))
-    server.listen()
-    loop.create_task(time.time(), accept_connection(server))
 
 
 def accept_connection(server: socket.socket):
@@ -62,27 +52,18 @@ def accept_connection(server: socket.socket):
 def serve_client(client: socket.socket):
     with client:
         while True:
-            request = read_request(client)
+            yield 0, client, selectors.EVENT_READ
+            request = client.recv(1024)
             if not request:
                 print(f'{client.getpeername()} disconnected')
                 break
             response = handle_request(request)
-            write_response(client, response)
-
-
-def read_request(client: socket.socket) -> bytes:
-    yield 0, client, selectors.EVENT_READ
-    request = client.recv(1024)
-    return request
+            yield 0, client, selectors.EVENT_WRITE
+            client.sendall(response)
 
 
 def handle_request(request: bytes) -> bytes:
     return str(int(request.decode()) * 2).encode()
-
-
-def write_response(client: socket.socket, response: bytes):
-    yield 0, client, selectors.EVENT_WRITE
-    client.sendall(response)
 
 
 def clock():
@@ -102,7 +83,12 @@ def bang():
 def main():
     loop.create_task(time.time(), bang())
     loop.create_task(time.time(), clock())
-    run_server(2222)
+    server = socket.socket()
+    server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+    server.setblocking(False)
+    server.bind(('', 2222))
+    server.listen()
+    loop.create_task(time.time(), accept_connection(server))
     loop.run()
 
 
